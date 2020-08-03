@@ -7,12 +7,12 @@
   
 - name: "Create Link"
   file:
-    src: /home/oparkins/.tmux/.tmux.conf
-    dest: /home/oparkins/.tmux.conf
+    src: ~/.tmux/.tmux.conf
+    dest: ~/.tmux.conf
     state: link
 
 - name: "Copy Local File"
   copy:
-    src: /home/oparkins/.tmux/.tmux.conf.local
-    dest: /home/oparkins/.tmux.conf.local
+    src: ~/.tmux/.tmux.conf.local
+    dest: ~/.tmux.conf.local
     remote_src: yes
