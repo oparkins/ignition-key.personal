@@ -1,0 +1,6 @@
+---
+
+- name: "Copy rc File"
+  copy:
+    src: files/rc
+    dest: ~/.ssh/rc

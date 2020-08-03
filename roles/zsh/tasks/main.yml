@@ -1,0 +1,17 @@
+---
+
+- name: "Install oh-my-zsh"
+  shell:
+    cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  args:
+    creates: ~/.oh-my-zsh
+
+- name: "Install zsh-autosuggestions"
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+- name: "Upload zshrc"
+  copy:
+    src: files/zshrc
+    dest: ~/.zshrc

@@ -1,0 +1,6 @@
+---
+
+- name: "Upload vim"
+  copy:
+    src: files/vimrc
+    dest: ~/.vimrc
