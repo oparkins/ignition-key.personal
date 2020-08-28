@@ -1,7 +1,19 @@
-if [ -S "$SSH_AUTH_SOCK" ]; then
-    ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
+# This will update the ssh auth sock to be one certain location. 
+# This is useful for long running sessions.
+
+# The SSH AUTH SOCK location we want
+ssh_sock=~/.ssh/ssh_auth_sock
+
+# If the variable SSH_AUTH_SOCK is a valid socket AND the location 
+# we want isn't a socket, create a link. If we didn't check the 
+# location we wanted, each time the user logs in, it would overwrite 
+# this. This causes problems for other sessions tha are long running.
+
+if [ -S "$SSH_AUTH_SOCK" ] && ! [ -S "$ssh_sock" ]; then
+    ln -sf $SSH_AUTH_SOCK $ssh_sock
 fi
 
+# Make sure that X11 forwarding works as well
 if read proto cookie && [ -n "$DISPLAY" ]; then
     if [ `echo $DISPLAY | cut -c1-10` = 'localhost:' ]; then
         # X11UseLocalhost=yes

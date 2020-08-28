@@ -11,7 +11,32 @@
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
-- name: "Upload zshrc"
-  copy:
-    src: files/zshrc
-    dest: ~/.zshrc
+- name: "Change SSH_AUTH_SOCK"
+  lineinfile:
+    path: ~/.zshrc
+    regexp: '^export SSH_AUTH_SOCK'
+    line: "export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock"
+
+- name: "Change ZSH_THEME"
+  lineinfile:
+    path: ~/.zshrc
+    regexp: '^ZSH_THEME='
+    line: ZSH_THEME="agnoster"
+    
+- name: "Add ipa alias"
+  lineinfile:
+    path: ~/.zshrc
+    regexp: '^alias ipa='
+    line: alias ipa="ip --brief --color addr"
+
+- name: "Change EDITOR"
+  lineinfile:
+    path: ~/.zshrc
+    regexp: '^export EDITOR'
+    line: "export EDITOR=vim"
+
+- name: "Change NMON"
+  lineinfile:
+    path: ~/.zshrc
+    regexp: '^export NMON'
+    line: "export NMON=cmnd"
